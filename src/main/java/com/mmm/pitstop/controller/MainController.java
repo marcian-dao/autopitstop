@@ -1,5 +1,6 @@
 package com.mmm.pitstop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,25 +52,29 @@ public class MainController {
 	}
 	
 	@GetMapping("/customer")
-	public String getCustomer(@RequestParam int theId, Model model) {
+	public String getCustomer(@RequestParam("theSearchName") String theSearchName, Model model) {
 		
-		Optional<Customer> result = customerRepository.findById(theId);
+		List<Customer>theCustomers = customerRepository.findAll();
 		
-		Customer theCustomer = null;
+		List<Customer> customers = new ArrayList<>();
 		
-		if(result.isPresent()) {
+		for(Customer tempCustomer : theCustomers) {
 			
-			theCustomer = result.get();
+			String fName = tempCustomer.getFirstName();
+			String lName = tempCustomer.getLastName();
+			String email = tempCustomer.getEmail();
 			
-		}else {
-			throw new RuntimeException("Not Found!" + theId);
-		}
+			if((fName.equalsIgnoreCase(theSearchName)) || (lName.equalsIgnoreCase(theSearchName)) || (email.equalsIgnoreCase(theSearchName))) {			
+				
+				customers.add(tempCustomer);
+				
+				model.addAttribute("customers", customers);		
+				
+				return "showCustomers";					
+			}				
+		}	
 		
-		model.addAttribute("theCustomer", theCustomer);
-		
-		
-		return "showTheCustomer";
-		
+		return "redirect:/customers";
 	}
 	
 	@RequestMapping("/formToPocess")
@@ -90,8 +96,8 @@ public class MainController {
 	}
 	
 
-	  @GetMapping("/showFormForUpdate") 
-	  public String updateCustomer(@RequestParam("customerId") int theId, Model model) {
+	  @GetMapping("/showFormForUpdate/{theId}") 
+	  public String updateCustomer(@PathVariable int theId, Model model) {
 	  
 		  Optional<Customer> result = customerRepository.findById(theId);
 		  
@@ -103,8 +109,8 @@ public class MainController {
 	  	return "customerForm"; 
 	  }
 	  
-	  @GetMapping("/deleteCustomer")
-	  public String removeCutomer(@RequestParam("customerId") int theId) {
+	  @GetMapping("/deleteCustomer/{theId}")
+	  public String removeCutomer(@PathVariable int theId) {
 		  
 		  
 		  customerRepository.deleteById(theId);

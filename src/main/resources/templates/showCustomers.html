@@ -25,6 +25,24 @@
 				class="btn btn-primary btn-sm mb-3 col-2" />
 
 
+		<form th:action="@{/customer}" method="GET" class="mx-auto">		
+
+			<div class="input-group">	
+					
+				<input type="text" name="theSearchName" placeholder=" Search Customer" 
+					   class="form-control py-2 br-0 border" />
+				
+				<span class="input-group-append">						                						
+						<button type="submit" class="btn btn-primary border-left-0 border">
+        					<i class="fa fa-search"></i>
+      					</button>     						
+				</span>	
+			</div>				                    									                    
+			
+		</form>	
+
+
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -53,15 +71,22 @@
 					<td th:text="${theCustomer.color}"/>
 					<td th:text="${theCustomer.regDate}"/>
 					<td>
-						<a th:href="@{/showFormForUpdate(customerId=${theCustomer.id})}">Update</a>
+						<a th:href="@{/showFormForUpdate/{theId} (theId=${theCustomer.id})}">Update</a>
 					</td>
 					<td>
-						<a th:href="@{/deleteCustomer(customerId=${theCustomer.id})}">Delete</a>
+						<a th:href="@{/deleteCustomer/{theId} (theId=${theCustomer.id})}">Delete</a>
+
+						  <!--  class="btn btn-sm col-1"
+
+						   onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false; 
+														window.location.href='${deleteLink}'; 
+														 return false;"  -->
 					</td>
 				</tr>
 			</tbody>
 		</table>	
 	
 	</div>	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -8,3 +8,8 @@ body{
 
 	color: #D4D5D7;
 }
+
+tbody tr:hover{
+
+	color:#007BFF;
+}
