@@ -7,35 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/> 
-    <link rel="stylesheet" th:href="@{/css/homePage.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/showCustomers.css}"/> 
 
     <title>Home Page</title>	
 </head>
 
 <body>
 
-	<br>
-	<h1>Customers</h1>
-	<br>
+	<div class="container">
 
-	<table>
-		<thead>
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>email</th>
-				<th>phone</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="theCustomer : ${customers}">
-				<td th:text="${theCustomer.firstName}"/>
-				<td th:text="${theCustomer.lastName}"/>
-				<td th:text="${theCustomer.email}"/>
-				<td th:text="${theCustomer.phone}"/>
-			</tr>
-		</tbody>
+		<br>
+		<h1>Customers</h1>
+		<br>
+
+		<input type="button" value="Add User"
+				onclick="window.location.href='formToPocess'; return false;"
+				class="btn btn-primary btn-sm mb-3 col-2" />
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Year</th>
+					<th>Color</th>
+					<th>Reg. Date</th>
+					<th>Action</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="theCustomer : ${customers}">
+					<td th:text="${theCustomer.firstName}"/>
+					<td th:text="${theCustomer.lastName}"/>
+					<td th:text="${theCustomer.email}"/>
+					<td th:text="${theCustomer.phone}"/>
+					<td th:text="${theCustomer.make}"/>
+					<td th:text="${theCustomer.model}"/>
+					<td th:text="${theCustomer.year}"/>
+					<td th:text="${theCustomer.color}"/>
+					<td th:text="${theCustomer.regDate}"/>
+					<td>
+						<a th:href="@{/showFormForUpdate(customerId=${theCustomer.id})}">Update</a>
+					</td>
+					<td>
+						<a th:href="@{/deleteCustomer(customerId=${theCustomer.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
 	
-
+	</div>	
 </body>
 </html>

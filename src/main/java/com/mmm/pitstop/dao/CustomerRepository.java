@@ -10,6 +10,6 @@ import com.mmm.pitstop.entity.Customer;
 /*@RepositoryRestResource(path="testers")*/
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	
-	List<Customer> findByOrderByFirstNameAsc();
+	List<Customer> findByOrderByLastNameAsc();
 
 }

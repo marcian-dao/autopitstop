@@ -148,4 +148,8 @@ public class Customer {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
+	
+
+	
 }

@@ -20,9 +20,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
-	public List<Customer> findByOrderByFirstNameAsc() {		
+	public List<Customer> findByOrderByLastNameAsc() {		
 		
-		return customerRepository.findByOrderByFirstNameAsc();
+		return customerRepository.findByOrderByLastNameAsc();
 	}
 
 }

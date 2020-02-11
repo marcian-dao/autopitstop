@@ -1,0 +1,43 @@
+!DOCTYPE html5>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/showCustomers.css}"/> 
+
+    <title>Home Page</title>	
+</head>
+	<body>
+		<div class=container>
+		
+		<h1>Customer</h1>
+		<br>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>email</th>
+					<th>phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${theCustomer.firstName}"/>
+					<td th:text="${theCustomer.lastName}"/>
+					<td th:text="${theCustomer.email}"/>
+					<td th:text="${theCustomer.phone}"/>
+				</tr>
+			</tbody>
+		</table>	
+
+
+		</div>	
+
+	</body>
+</html>	

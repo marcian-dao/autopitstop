@@ -7,7 +7,7 @@ import com.mmm.pitstop.entity.Customer;
 public interface CustomerService {
 	
 	
-	List<Customer>findByOrderByFirstNameAsc();
+	List<Customer>findByOrderByLastNameAsc();
 	
 
 }

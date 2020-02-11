@@ -1,0 +1,143 @@
+<!DOCTYPE html5>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="login.css" th:href="@{/css/bootstrap.min.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/showCustomers.css}"/> 
+
+    <title>Main Page</title>	
+</head>
+
+<body>
+
+ 	
+    <div clss="container justify-content-center">
+
+        <a th:href="@{/customers}" class="btn btn-sm btn-info m-3 col-1 float-right" >Go Back</a>
+
+        <form th:action="@{/saveCustomer}" method="POST" th:object="${customer}" >
+            
+            <input type="hidden" th:field="*{id}"/>
+                        
+                <div class="card-body">
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="First Name" 
+                               required="required"
+                               th:field="*{firstName}" 
+                               /> 
+
+                        <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                Name Error>
+                        </span>
+                    </div>        
+                        
+                    <div class="input-group form-group">
+                            
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Last Name" 
+                               required="required"
+                               th:field="*{lastName}" 
+                               />
+              
+                        <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                            Name Error>
+                        </span>
+                               
+                    </div>
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Email"  
+                               required="required"
+                               th:field="*{email}"                                 
+                               />
+                        
+                        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                            Name Error>
+                        </span>
+
+                    </div>      
+                    
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Phone" 
+                               required="required"
+                               th:field="*{phone}" 
+                               />
+
+                        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
+                                Name Error>
+                        </span>
+                    </div>
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Make" 
+                               required="required"
+                               th:field="*{make}" 
+                               />
+
+                        <span class="error" th:if="${#fields.hasErrors('make')}" th:errors="*{make}">
+                                Name Error>
+                        </span>
+                    </div>
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Model" 
+                               required="required"
+                               th:field="*{model}" 
+                               />
+
+                        <span class="error" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">
+                                Name Error>
+                        </span>
+                    </div>
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Color" 
+                               required="required"
+                               th:field="*{color}" 
+                               />
+
+                        <span class="error" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">
+                                Name Error>
+                        </span>
+                    </div>
+
+                    <div class="input-group form-group">
+                        
+                        <input type="text" class="form-input form-control mb-2 col-3"
+                               placeholder="Year" 
+                               required="required"
+                               th:field="*{year}" 
+                               />
+
+                        <span class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">
+                                Name Error>
+                        </span>
+                    </div>
+        
+                </div>
+
+                <div class="card-footer input-group form-group">
+                    <input type="submit" value="Update" class="btn btn-sm btn-info col-2"/>
+                </div>
+            </div>     
+         </form>
+    </div>    
+</body>
+</html>
