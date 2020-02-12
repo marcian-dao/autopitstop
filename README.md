@@ -1,0 +1,3 @@
+This is simple CRM repository.
+Used technologies: Java, Spring Boot, Spring Data REST, Hibernate, MySQL, Thymeleaf, CSS3, Html5.
+Work in progress...
