@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +37,14 @@ public class MainController {
 		customerService = theCustomerService;
 		customerRepository = theCustomerRepository;
 		
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 	
 	@RequestMapping("/")
@@ -86,16 +100,22 @@ public class MainController {
 	}
 	
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
+	public String saveCustomer(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingResult) {
 		
-		theCustomer.setRegDate(new java.util.Date());
-		
-		customerRepository.save(theCustomer);
-		
-		return "redirect:/customers";
+		if(theBindingResult.hasErrors()) {
+			
+			return "customerForm";
+			
+		}else {
+			
+			theCustomer.setRegDate(new java.util.Date());
+			
+			customerRepository.save(theCustomer);
+			
+			return "redirect:/customers";
+		}		
 	}
 	
-
 	  @GetMapping("/showFormForUpdate/{theId}") 
 	  public String updateCustomer(@PathVariable int theId, Model model) {
 	  

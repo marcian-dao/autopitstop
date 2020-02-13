@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,27 +26,43 @@ public class Customer {
 	private int id;
 	
 	@Column(name="first_name")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String firstName;
 	
 	@Column(name="last_name")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String lastName;
 	
 	@Column(name="email")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String email;
 	
 	@Column(name="phone")
+	
+	@NotNull(message="is required")
 	private String phone;
 	
 	@Column(name="make")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String make;
 	
 	@Column(name="model")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String model;
 	
 	@Column(name="color")
+	@NotNull(message="is required")
+	@Size( min=2, max=15, message="must be between 2 and 15 characters")
 	private String color;
 	
 	@Column(name="year")
+	@NotNull(message="is required")
+	@Size( min=2, max=4, message="must be between a 2 and 4 characters")
 	private String year;
 	
 	@Column(name="registration_date")
