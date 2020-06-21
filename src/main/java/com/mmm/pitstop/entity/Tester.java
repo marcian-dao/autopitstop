@@ -1,5 +1,8 @@
 package com.mmm.pitstop.entity;
 
 public class Tester {
-  System.out.println("test");
+    //TODO some test
+    public void doSomeTest() {
+        System.out.println("test");
+    }
 }
